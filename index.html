@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="2048">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="msapplication-TileColor" content="#2c3e50">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <!-- App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <title>2048 Spiel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>2048</h1>
+            <div class="score-container">
+                <div class="score-box">
+                    <span class="score-label">Punkte</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-label">Beste</span>
+                    <span id="best-score">0</span>
+                </div>
+            </div>
+            <button id="new-game">Neues Spiel</button>
+        </header>
+        
+        <div class="game-container">
+            <div class="game-header">
+                <p>Verbinde gleiche Zahlen um 2048 zu erreichen!</p>
+                <p>Verwende Pfeiltasten oder wische auf dem Bildschirm</p>
+            </div>
+            
+            <div class="grid-container">
+                <div class="grid-row">
+                    <div class="grid-cell" data-row="0" data-col="0"></div>
+                    <div class="grid-cell" data-row="0" data-col="1"></div>
+                    <div class="grid-cell" data-row="0" data-col="2"></div>
+                    <div class="grid-cell" data-row="0" data-col="3"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell" data-row="1" data-col="0"></div>
+                    <div class="grid-cell" data-row="1" data-col="1"></div>
+                    <div class="grid-cell" data-row="1" data-col="2"></div>
+                    <div class="grid-cell" data-row="1" data-col="3"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell" data-row="2" data-col="0"></div>
+                    <div class="grid-cell" data-row="2" data-col="1"></div>
+                    <div class="grid-cell" data-row="2" data-col="2"></div>
+                    <div class="grid-cell" data-row="2" data-col="3"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell" data-row="3" data-col="0"></div>
+                    <div class="grid-cell" data-row="3" data-col="1"></div>
+                    <div class="grid-cell" data-row="3" data-col="2"></div>
+                    <div class="grid-cell" data-row="3" data-col="3"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="game-over" class="game-over hidden">
+            <div class="game-over-content">
+                <h2>Spiel vorbei!</h2>
+                <p>Ihre Punktzahl: <span id="final-score">0</span></p>
+                <button id="restart">Nochmal spielen</button>
+            </div>
+        </div>
+        
+        <div id="win" class="win hidden">
+            <div class="win-content">
+                <h2>Gewonnen!</h2>
+                <p>Sie haben 2048 erreicht!</p>
+                <button id="continue">Weiterspielen</button>
+                <button id="new-game-win">Neues Spiel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

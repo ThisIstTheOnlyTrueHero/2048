@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #776e65;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #f9f6f2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.score-container {
+    display: flex;
+    gap: 10px;
+}
+
+.score-box {
+    background: #bbada0;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-align: center;
+    color: white;
+    min-width: 100px;
+}
+
+.score-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#score, #best-score {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#new-game {
+    background: #8f7a66;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#new-game:hover {
+    background: #7f6a56;
+}
+
+.game-container {
+    background: #bbada0;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #f9f6f2;
+}
+
+.game-header p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.grid-container {
+    background: #bbada0;
+    border-radius: 8px;
+    padding: 15px;
+    position: relative;
+}
+
+.grid-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.grid-row:last-child {
+    margin-bottom: 0;
+}
+
+.grid-cell {
+    width: 100px;
+    height: 100px;
+    background: rgba(238, 228, 218, 0.35);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #776e65;
+    position: relative;
+    transition: all 0.15s ease;
+    box-sizing: border-box;
+}
+
+.tile {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #eee4da;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #776e65;
+    transition: all 0.15s ease;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.tile.new {
+    animation: appear 0.2s ease;
+}
+
+.tile.merged {
+    animation: pop 0.3s ease;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Tile colors */
+.tile[data-value="2"] {
+    background: #eee4da;
+    color: #776e65;
+}
+
+.tile[data-value="4"] {
+    background: #ede0c8;
+    color: #776e65;
+}
+
+.tile[data-value="8"] {
+    background: #f2b179;
+    color: #f9f6f2;
+}
+
+.tile[data-value="16"] {
+    background: #f59563;
+    color: #f9f6f2;
+}
+
+.tile[data-value="32"] {
+    background: #f67c5f;
+    color: #f9f6f2;
+}
+
+.tile[data-value="64"] {
+    background: #f65e3b;
+    color: #f9f6f2;
+}
+
+.tile[data-value="128"] {
+    background: #edcf72;
+    color: #f9f6f2;
+    font-size: 1.75rem;
+}
+
+.tile[data-value="256"] {
+    background: #edcc61;
+    color: #f9f6f2;
+    font-size: 1.75rem;
+}
+
+.tile[data-value="512"] {
+    background: #edc850;
+    color: #f9f6f2;
+    font-size: 1.75rem;
+}
+
+.tile[data-value="1024"] {
+    background: #edc53f;
+    color: #f9f6f2;
+    font-size: 1.5rem;
+}
+
+.tile[data-value="2048"] {
+    background: #edc22e;
+    color: #f9f6f2;
+    font-size: 1.5rem;
+}
+
+.game-over, .win {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.game-over-content, .win-content {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.game-over-content h2, .win-content h2 {
+    color: #776e65;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.game-over-content p, .win-content p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+}
+
+.game-over-content button, .win-content button {
+    background: #8f7a66;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.game-over-content button:hover, .win-content button:hover {
+    background: #7f6a56;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+        max-width: 100%;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .grid-cell, .tile {
+        width: 70px;
+        height: 70px;
+        font-size: 1.5rem;
+    }
+    
+    .tile[data-value="128"], .tile[data-value="256"], .tile[data-value="512"] {
+        font-size: 1.25rem;
+    }
+    
+    .tile[data-value="1024"], .tile[data-value="2048"] {
+        font-size: 1rem;
+    }
+    
+    .grid-row {
+        gap: 10px;
+    }
+    
+    .grid-container {
+        padding: 10px;
+    }
+    
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .score-container {
+        justify-content: center;
+    }
+}
